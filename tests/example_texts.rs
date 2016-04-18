@@ -12,10 +12,16 @@ However, this system does have a certain cost: learning curve. Many new users to
 With that in mind, let’s learn about lifetimes.";
 
     assert_eq!(lint(text), vec![
+        Hint { group: Some("wordy"), value: "accomplish".to_owned(), line: Some(3), start: 41, end: 51 },
         Hint { group: Some("adverbs"), value: "many".to_owned(), line: Some(3), start: 74, end: 78 },
+        Hint { group: Some("wordy"), value: "in order to".to_owned(), line: Some(3), start: 175, end: 186 },
+        Hint { group: Some("wordy"), value: "all of".to_owned(), line: Some(3), start: 271, end: 277 },
         Hint { group: Some("passive"), value: "is done".to_owned(), line: Some(3), start: 324, end: 331 },
+        Hint { group: Some("wordy"), value: "however".to_owned(), line: Some(5), start: 0, end: 7 },
         Hint { group: Some("adverbs"), value: "many".to_owned(), line: Some(5), start: 63, end: 67 },
-        Hint { group: Some("weakens"), value: "things".to_owned(), line: Some(5), start: 429, end: 435 }
+        Hint { group: Some("wordy"), value: "implement".to_owned(), line: Some(5), start: 380, end: 389 },
+        Hint { group: Some("weakens"), value: "things".to_owned(), line: Some(5), start: 429, end: 435 },
+        Hint { group: Some("wordy"), value: "however".to_owned(), line: Some(5), start: 466, end: 473 }
     ]);
 }
 

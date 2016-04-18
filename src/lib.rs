@@ -18,6 +18,7 @@ pub fn lint(input: &str) -> Vec<Hint> {
     pattern_groups.push(data::ADVERBS, "adverbs");
     pattern_groups.push(data::WEAKENS, "weakens");
     pattern_groups.push(data::CLICHES, "cliches");
+    pattern_groups.push(data::WORDY, "wordy");
 
     let automaton = AcAutomaton::new(pattern_groups.patterns.clone());
 
