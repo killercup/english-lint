@@ -27,11 +27,12 @@ With that in mind, let’s learn about lifetimes.";
 
 #[test]
 fn example_2() {
-    let text = "So you’ve learned how to write some Rust code. But there’s a difference between writing any Rust code and writing good Rust code.
+    let text = "So you’ve learned how to write some Rust code. But there’s a difference between writing any Rust code and writing quite good Rust code.
 
 This chapter consists of relatively independent tutorials which show you how to take your Rust to the next level. Common patterns and standard library features will indeed be introduced. Read these sections in any order of your choosing.";
 
     assert_eq!(lint(text), vec![
+        Hint { group: Some("weasels"), value: "quite".to_owned(), line: Some(1), start: 118, end: 123 },
         Hint { group: Some("adverbs"), value: "relatively".to_owned(), line: Some(3), start: 25, end: 35 },
         Hint { group: Some("passive"), value: "be introduced".to_owned(), line: Some(3), start: 172, end: 185 }
     ]);
