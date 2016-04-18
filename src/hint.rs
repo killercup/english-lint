@@ -3,7 +3,7 @@ use std::fmt;
 #[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Hint {
     pub group: Option<&'static str>,
-    pub value: &'static str,
+    pub value: String,
     pub line: Option<usize>,
     pub start: usize,
     pub end: usize,

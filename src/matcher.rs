@@ -11,7 +11,7 @@ pub fn matcher(automaton: &AcAutomaton<&'static str>, groups: &PatternGroups, te
             start: m.start,
             end: m.end,
             group: groups.group_names.get(m.pati).map(|&x| x),
-            value: groups.patterns[m.pati],
+            value: groups.patterns[m.pati].to_owned(),
         })
         .collect()
 }
@@ -27,7 +27,7 @@ fn matcher_works() {
 
     assert_eq!(
         matcher(&AcAutomaton::new(pattern_groups.patterns.clone()), &pattern_groups, text),
-        vec![Hint { start: 3, end: 9, line: None, group: Some("adverbs"), value: "boldly"}]
+        vec![Hint { start: 3, end: 9, line: None, group: Some("adverbs"), value: "boldly".to_owned()}]
     );
 
     let mut pattern_groups = PatternGroups::new();
@@ -53,8 +53,8 @@ fn matcher_works_with_groups() {
     assert_eq!(
         matcher(&AcAutomaton::new(pattern_groups.patterns.clone()), &pattern_groups, text),
         vec![
-            Hint { group: Some("adverbs"), value: "wisely", line: None, start: 0, end: 6 },
-            Hint { group: Some("cliches"), value: "at loose ends", line: None, start: 28, end: 41 }
+            Hint { group: Some("adverbs"), value: "wisely".to_owned(), line: None, start: 0, end: 6 },
+            Hint { group: Some("cliches"), value: "at loose ends".to_owned(), line: None, start: 28, end: 41 }
         ]
     );
 }

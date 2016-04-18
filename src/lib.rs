@@ -1,4 +1,6 @@
 extern crate aho_corasick;
+extern crate regex;
+#[macro_use] extern crate lazy_static;
 
 mod range_map;
 
@@ -16,16 +18,27 @@ pub fn lint(input: &str) -> Vec<Hint> {
     pattern_groups.push(data::ADVERBS, "adverbs");
     pattern_groups.push(data::WEAKENS, "weakens");
     pattern_groups.push(data::CLICHES, "cliches");
-    
+
     let automaton = AcAutomaton::new(pattern_groups.patterns.clone());
-    
+
     input
         .lines().enumerate()
         .flat_map(|(index, line)| {
             let line_number = index + 1;
+
+            let irregulars = data::PASSIVE.find_iter(line)
+                .map(move |(start, end)| Hint {
+                    group: Some("passive"),
+                    value: line[start..end].to_owned(),
+                    line: Some(line_number.clone()),
+                    start: start,
+                    end: end,
+                 });
+
             matcher::matcher(&automaton, &pattern_groups, line)
                 .into_iter()
-                .map(move |hint| Hint { line: Some(line_number), ..hint.clone()})
+                .map(move |hint| Hint { line: Some(line_number.clone()), ..hint.clone()})
+                .chain(irregulars)
         })
         .collect()
 }

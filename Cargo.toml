@@ -1,9 +1,11 @@
 [package]
 authors = ["Pascal Hertleif <killercup@gmail.com>"]
-name = "english-lint"
-version = "0.1.0"
 license = "MIT/Apache-2.0"
+name = "english-lint"
 repository = "https://github.com/killercup/english-lint"
+version = "0.1.0"
 
 [dependencies]
 aho-corasick = "0.5.1"
+lazy_static = "0.2.0"
+regex = "0.1.66"
