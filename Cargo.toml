@@ -3,7 +3,11 @@ authors = ["Pascal Hertleif <killercup@gmail.com>"]
 license = "MIT/Apache-2.0"
 name = "english-lint"
 repository = "https://github.com/killercup/english-lint"
+homepage = "https://github.com/killercup/english-lint"
 version = "0.1.0"
+readme = "Readme.md"
+description = "Find common stylistic problems in english texts like technical or scientific documents."
+keywords = ["documentation", "text"]
 
 [dependencies]
 aho-corasick = "0.5.1"
