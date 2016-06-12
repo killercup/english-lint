@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Hint","Suggestion on which words to change"]]});

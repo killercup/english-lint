@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="Source to the Rust file `src/data/adverbs.rs`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang">
+
+    <title>adverbs.rs.html -- source</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content source"><pre class="line-numbers"><span id="1">  1</span>
+<span id="2">  2</span>
+<span id="3">  3</span>
+<span id="4">  4</span>
+<span id="5">  5</span>
+<span id="6">  6</span>
+<span id="7">  7</span>
+<span id="8">  8</span>
+<span id="9">  9</span>
+<span id="10"> 10</span>
+<span id="11"> 11</span>
+<span id="12"> 12</span>
+<span id="13"> 13</span>
+<span id="14"> 14</span>
+<span id="15"> 15</span>
+<span id="16"> 16</span>
+<span id="17"> 17</span>
+<span id="18"> 18</span>
+<span id="19"> 19</span>
+<span id="20"> 20</span>
+<span id="21"> 21</span>
+<span id="22"> 22</span>
+<span id="23"> 23</span>
+<span id="24"> 24</span>
+<span id="25"> 25</span>
+<span id="26"> 26</span>
+<span id="27"> 27</span>
+<span id="28"> 28</span>
+<span id="29"> 29</span>
+<span id="30"> 30</span>
+<span id="31"> 31</span>
+<span id="32"> 32</span>
+<span id="33"> 33</span>
+<span id="34"> 34</span>
+<span id="35"> 35</span>
+<span id="36"> 36</span>
+<span id="37"> 37</span>
+<span id="38"> 38</span>
+<span id="39"> 39</span>
+<span id="40"> 40</span>
+<span id="41"> 41</span>
+<span id="42"> 42</span>
+<span id="43"> 43</span>
+<span id="44"> 44</span>
+<span id="45"> 45</span>
+<span id="46"> 46</span>
+<span id="47"> 47</span>
+<span id="48"> 48</span>
+<span id="49"> 49</span>
+<span id="50"> 50</span>
+<span id="51"> 51</span>
+<span id="52"> 52</span>
+<span id="53"> 53</span>
+<span id="54"> 54</span>
+<span id="55"> 55</span>
+<span id="56"> 56</span>
+<span id="57"> 57</span>
+<span id="58"> 58</span>
+<span id="59"> 59</span>
+<span id="60"> 60</span>
+<span id="61"> 61</span>
+<span id="62"> 62</span>
+<span id="63"> 63</span>
+<span id="64"> 64</span>
+<span id="65"> 65</span>
+<span id="66"> 66</span>
+<span id="67"> 67</span>
+<span id="68"> 68</span>
+<span id="69"> 69</span>
+<span id="70"> 70</span>
+<span id="71"> 71</span>
+<span id="72"> 72</span>
+<span id="73"> 73</span>
+<span id="74"> 74</span>
+<span id="75"> 75</span>
+<span id="76"> 76</span>
+<span id="77"> 77</span>
+<span id="78"> 78</span>
+<span id="79"> 79</span>
+<span id="80"> 80</span>
+<span id="81"> 81</span>
+<span id="82"> 82</span>
+<span id="83"> 83</span>
+<span id="84"> 84</span>
+<span id="85"> 85</span>
+<span id="86"> 86</span>
+<span id="87"> 87</span>
+<span id="88"> 88</span>
+<span id="89"> 89</span>
+<span id="90"> 90</span>
+<span id="91"> 91</span>
+<span id="92"> 92</span>
+<span id="93"> 93</span>
+<span id="94"> 94</span>
+<span id="95"> 95</span>
+<span id="96"> 96</span>
+<span id="97"> 97</span>
+<span id="98"> 98</span>
+<span id="99"> 99</span>
+<span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+</pre><pre class='rust '>
+<span class='doccomment'>//! Adverbs</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Source data from &lt;https://github.com/duereg/adverb-where&gt;, (c) 2016 Matt Blair, MIT license.</span>
+
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>ADVERBS</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> [<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>] <span class='op'>=</span> <span class='kw-2'>&amp;</span>[
+  <span class='string'>&quot;absolutely&quot;</span>,
+  <span class='string'>&quot;accidentally&quot;</span>,
+  <span class='string'>&quot;additionally&quot;</span>,
+  <span class='string'>&quot;allegedly&quot;</span>,
+  <span class='string'>&quot;alternatively&quot;</span>,
+  <span class='string'>&quot;angrily&quot;</span>,
+  <span class='string'>&quot;anxiously&quot;</span>,
+  <span class='string'>&quot;approximately&quot;</span>,
+  <span class='string'>&quot;awkwardly&quot;</span>,
+  <span class='string'>&quot;badly&quot;</span>,
+  <span class='string'>&quot;barely&quot;</span>,
+  <span class='string'>&quot;beautifully&quot;</span>,
+  <span class='string'>&quot;blindly&quot;</span>,
+  <span class='string'>&quot;boldly&quot;</span>,
+  <span class='string'>&quot;bravely&quot;</span>,
+  <span class='string'>&quot;brightly&quot;</span>,
+  <span class='string'>&quot;briskly&quot;</span>,
+  <span class='string'>&quot;bristly&quot;</span>,
+  <span class='string'>&quot;bubbly&quot;</span>,
+  <span class='string'>&quot;busily&quot;</span>,
+  <span class='string'>&quot;calmly&quot;</span>,
+  <span class='string'>&quot;carefully&quot;</span>,
+  <span class='string'>&quot;carelessly&quot;</span>,
+  <span class='string'>&quot;cautiously&quot;</span>,
+  <span class='string'>&quot;cheerfully&quot;</span>,
+  <span class='string'>&quot;clearly&quot;</span>,
+  <span class='string'>&quot;closely&quot;</span>,
+  <span class='string'>&quot;coldly&quot;</span>,
+  <span class='string'>&quot;completely&quot;</span>,
+  <span class='string'>&quot;consequently&quot;</span>,
+  <span class='string'>&quot;correctly&quot;</span>,
+  <span class='string'>&quot;courageously&quot;</span>,
+  <span class='string'>&quot;crinkly&quot;</span>,
+  <span class='string'>&quot;cruelly&quot;</span>,
+  <span class='string'>&quot;crumbly&quot;</span>,
+  <span class='string'>&quot;cuddly&quot;</span>,
+  <span class='string'>&quot;currently&quot;</span>,
+  <span class='string'>&quot;daily&quot;</span>,
+  <span class='string'>&quot;daringly&quot;</span>,
+  <span class='string'>&quot;deadly&quot;</span>,
+  <span class='string'>&quot;definitely&quot;</span>,
+  <span class='string'>&quot;deliberately&quot;</span>,
+  <span class='string'>&quot;doubtfully&quot;</span>,
+  <span class='string'>&quot;dumbly&quot;</span>,
+  <span class='string'>&quot;eagerly&quot;</span>,
+  <span class='string'>&quot;early&quot;</span>,
+  <span class='string'>&quot;easily&quot;</span>,
+  <span class='string'>&quot;elegantly&quot;</span>,
+  <span class='string'>&quot;enormously&quot;</span>,
+  <span class='string'>&quot;enthusiastically&quot;</span>,
+  <span class='string'>&quot;equally&quot;</span>,
+  <span class='string'>&quot;especially&quot;</span>,
+  <span class='string'>&quot;eventually&quot;</span>,
+  <span class='string'>&quot;exactly&quot;</span>,
+  <span class='string'>&quot;exceedingly&quot;</span>,
+  <span class='string'>&quot;exclusively&quot;</span>,
+  <span class='string'>&quot;extremely&quot;</span>,
+  <span class='string'>&quot;fairly&quot;</span>,
+  <span class='string'>&quot;faithfully&quot;</span>,
+  <span class='string'>&quot;fatally&quot;</span>,
+  <span class='string'>&quot;fiercely&quot;</span>,
+  <span class='string'>&quot;finally&quot;</span>,
+  <span class='string'>&quot;fondly&quot;</span>,
+  <span class='string'>&quot;foolishly&quot;</span>,
+  <span class='string'>&quot;fortunately&quot;</span>,
+  <span class='string'>&quot;frankly&quot;</span>,
+  <span class='string'>&quot;frantically&quot;</span>,
+  <span class='string'>&quot;generously&quot;</span>,
+  <span class='string'>&quot;gently&quot;</span>,
+  <span class='string'>&quot;giggly&quot;</span>,
+  <span class='string'>&quot;gladly&quot;</span>,
+  <span class='string'>&quot;gracefully&quot;</span>,
+  <span class='string'>&quot;greedily&quot;</span>,
+  <span class='string'>&quot;happily&quot;</span>,
+  <span class='string'>&quot;hardly&quot;</span>,
+  <span class='string'>&quot;hastily&quot;</span>,
+  <span class='string'>&quot;healthily&quot;</span>,
+  <span class='string'>&quot;heartily&quot;</span>,
+  <span class='string'>&quot;helpfully&quot;</span>,
+  <span class='string'>&quot;honestly&quot;</span>,
+  <span class='string'>&quot;hourly&quot;</span>,
+  <span class='string'>&quot;hungrily&quot;</span>,
+  <span class='string'>&quot;hurriedly&quot;</span>,
+  <span class='string'>&quot;immediately&quot;</span>,
+  <span class='string'>&quot;impatiently&quot;</span>,
+  <span class='string'>&quot;inadequately&quot;</span>,
+  <span class='string'>&quot;ingeniously&quot;</span>,
+  <span class='string'>&quot;innocently&quot;</span>,
+  <span class='string'>&quot;inquisitively&quot;</span>,
+  <span class='string'>&quot;interestingly&quot;</span>,
+  <span class='string'>&quot;irritably&quot;</span>,
+  <span class='string'>&quot;jiggly&quot;</span>,
+  <span class='string'>&quot;joyously&quot;</span>,
+  <span class='string'>&quot;justly&quot;</span>,
+  <span class='string'>&quot;kindly&quot;</span>,
+  <span class='string'>&quot;largely&quot;</span>,
+  <span class='string'>&quot;lately&quot;</span>,
+  <span class='string'>&quot;lazily&quot;</span>,
+  <span class='string'>&quot;likely&quot;</span>,
+  <span class='string'>&quot;literally&quot;</span>,
+  <span class='string'>&quot;lonely&quot;</span>,
+  <span class='string'>&quot;loosely&quot;</span>,
+  <span class='string'>&quot;loudly&quot;</span>,
+  <span class='string'>&quot;loudly&quot;</span>,
+  <span class='string'>&quot;luckily&quot;</span>,
+  <span class='string'>&quot;madly&quot;</span>,
+  <span class='string'>&quot;many&quot;</span>,
+  <span class='string'>&quot;mentally&quot;</span>,
+  <span class='string'>&quot;mildly&quot;</span>,
+  <span class='string'>&quot;monthly&quot;</span>,
+  <span class='string'>&quot;mortally&quot;</span>,
+  <span class='string'>&quot;mostly&quot;</span>,
+  <span class='string'>&quot;mysteriously&quot;</span>,
+  <span class='string'>&quot;neatly&quot;</span>,
+  <span class='string'>&quot;nervously&quot;</span>,
+  <span class='string'>&quot;nightly&quot;</span>,
+  <span class='string'>&quot;noisily&quot;</span>,
+  <span class='string'>&quot;normally&quot;</span>,
+  <span class='string'>&quot;obediently&quot;</span>,
+  <span class='string'>&quot;occasionally&quot;</span>,
+  <span class='string'>&quot;only&quot;</span>,
+  <span class='string'>&quot;openly&quot;</span>,
+  <span class='string'>&quot;painfully&quot;</span>,
+  <span class='string'>&quot;particularly&quot;</span>,
+  <span class='string'>&quot;patiently&quot;</span>,
+  <span class='string'>&quot;perfectly&quot;</span>,
+  <span class='string'>&quot;politely&quot;</span>,
+  <span class='string'>&quot;poorly&quot;</span>,
+  <span class='string'>&quot;powerfully&quot;</span>,
+  <span class='string'>&quot;presumably&quot;</span>,
+  <span class='string'>&quot;previously&quot;</span>,
+  <span class='string'>&quot;promptly&quot;</span>,
+  <span class='string'>&quot;punctually&quot;</span>,
+  <span class='string'>&quot;quarterly&quot;</span>,
+  <span class='string'>&quot;quickly&quot;</span>,
+  <span class='string'>&quot;quietly&quot;</span>,
+  <span class='string'>&quot;rapidly&quot;</span>,
+  <span class='string'>&quot;rarely&quot;</span>,
+  <span class='string'>&quot;really&quot;</span>,
+  <span class='string'>&quot;recently&quot;</span>,
+  <span class='string'>&quot;recklessly&quot;</span>,
+  <span class='string'>&quot;regularly&quot;</span>,
+  <span class='string'>&quot;relatively&quot;</span>,
+  <span class='string'>&quot;reluctantly&quot;</span>,
+  <span class='string'>&quot;remarkably&quot;</span>,
+  <span class='string'>&quot;repeatedly&quot;</span>,
+  <span class='string'>&quot;rightfully&quot;</span>,
+  <span class='string'>&quot;roughly&quot;</span>,
+  <span class='string'>&quot;rudely&quot;</span>,
+  <span class='string'>&quot;sadly&quot;</span>,
+  <span class='string'>&quot;safely&quot;</span>,
+  <span class='string'>&quot;selfishly&quot;</span>,
+  <span class='string'>&quot;sensibly&quot;</span>,
+  <span class='string'>&quot;seriously&quot;</span>,
+  <span class='string'>&quot;sharply&quot;</span>,
+  <span class='string'>&quot;shortly&quot;</span>,
+  <span class='string'>&quot;shyly&quot;</span>,
+  <span class='string'>&quot;significantly&quot;</span>,
+  <span class='string'>&quot;silently&quot;</span>,
+  <span class='string'>&quot;simply&quot;</span>,
+  <span class='string'>&quot;sleepily&quot;</span>,
+  <span class='string'>&quot;slowly&quot;</span>,
+  <span class='string'>&quot;smartly&quot;</span>,
+  <span class='string'>&quot;smelly&quot;</span>,
+  <span class='string'>&quot;smoothly&quot;</span>,
+  <span class='string'>&quot;softly&quot;</span>,
+  <span class='string'>&quot;solemnly&quot;</span>,
+  <span class='string'>&quot;sparkly&quot;</span>,
+  <span class='string'>&quot;speedily&quot;</span>,
+  <span class='string'>&quot;stealthily&quot;</span>,
+  <span class='string'>&quot;sternly&quot;</span>,
+  <span class='string'>&quot;stupidly&quot;</span>,
+  <span class='string'>&quot;substantially&quot;</span>,
+  <span class='string'>&quot;successfully&quot;</span>,
+  <span class='string'>&quot;suddenly&quot;</span>,
+  <span class='string'>&quot;surprisingly&quot;</span>,
+  <span class='string'>&quot;suspiciously&quot;</span>,
+  <span class='string'>&quot;swiftly&quot;</span>,
+  <span class='string'>&quot;tenderly&quot;</span>,
+  <span class='string'>&quot;tensely&quot;</span>,
+  <span class='string'>&quot;thoughtfully&quot;</span>,
+  <span class='string'>&quot;tightly&quot;</span>,
+  <span class='string'>&quot;timely&quot;</span>,
+  <span class='string'>&quot;truthfully&quot;</span>,
+  <span class='string'>&quot;unexpectedly&quot;</span>,
+  <span class='string'>&quot;unfortunately&quot;</span>,
+  <span class='string'>&quot;usually&quot;</span>,
+  <span class='string'>&quot;very&quot;</span>,
+  <span class='string'>&quot;victoriously&quot;</span>,
+  <span class='string'>&quot;violently&quot;</span>,
+  <span class='string'>&quot;vivaciously&quot;</span>,
+  <span class='string'>&quot;warmly&quot;</span>,
+  <span class='string'>&quot;waverly&quot;</span>,
+  <span class='string'>&quot;weakly&quot;</span>,
+  <span class='string'>&quot;wearily&quot;</span>,
+  <span class='string'>&quot;weekly&quot;</span>,
+  <span class='string'>&quot;wildly&quot;</span>,
+  <span class='string'>&quot;wisely&quot;</span>,
+  <span class='string'>&quot;worldly&quot;</span>,
+  <span class='string'>&quot;wrinkly&quot;</span>,
+  <span class='string'>&quot;yearly&quot;</span>,
+];
+
+<span class='kw'>pub</span> <span class='kw'>static</span> <span class='ident'>WEAKENS</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> [<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>] <span class='op'>=</span> <span class='kw-2'>&amp;</span>[
+  <span class='string'>&quot;just&quot;</span>,
+  <span class='string'>&quot;maybe&quot;</span>,
+  <span class='string'>&quot;stuff&quot;</span>,
+  <span class='string'>&quot;things&quot;</span>,
+];
+</pre>
+</section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../../";
+        window.currentCrate = "english_lint";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
+    
+    <script defer src="../../../../search-index.js"></script>
+</body>
+</html>
