@@ -1,5 +1,6 @@
-//! Find common stylistic problems in english texts like technical or scientific
-//! documents. Based on [write-good][npm-write-good] and [this article][matt].
+//! Find common stylistic problems in english texts. Works well for technical or
+//! scientific documents. Based on [write-good][npm-write-good] and
+//! [this article][matt].
 //!
 //! [npm-write-good]: https://github.com/btford/write-good
 //! [matt]: http://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/
