@@ -6,8 +6,12 @@ repository = "https://github.com/killercup/english-lint"
 homepage = "https://github.com/killercup/english-lint"
 version = "0.1.0"
 readme = "Readme.md"
-description = "Find common stylistic problems in english texts like technical or scientific documents."
+description = "Find common stylistic problems in english texts. Works well for technical or scientific documents."
 keywords = ["documentation", "text"]
+
+[[bin]]
+name = "english-lint"
+doc = false
 
 [dependencies]
 aho-corasick = "0.5.1"

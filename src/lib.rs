@@ -1,3 +1,10 @@
+//! Find common stylistic problems in english texts like technical or scientific
+//! documents. Based on [write-good][npm-write-good] and [this article][matt].
+//!
+//! [npm-write-good]: https://github.com/btford/write-good
+//! [matt]: http://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/
+#![deny(missing_docs, dead_code)]
+
 extern crate aho_corasick;
 extern crate regex;
 #[macro_use] extern crate lazy_static;
@@ -13,6 +20,25 @@ use aho_corasick::AcAutomaton;
 
 pub use hint::Hint;
 
+/// Lint a string of english text
+///
+/// Given some english text, this function will try to give suggestions on how
+/// to improve the language.
+///
+/// # Examples
+///
+/// ```
+/// extern crate english_lint;
+///
+/// let text: &str = "This chapter consists of relatively independent tutorials";
+/// let suggestions: Vec<english_lint::Hint> = english_lint::lint(text);
+///
+/// assert_eq!(suggestions, vec![
+///     english_lint::Hint { group: Some("adverbs"),
+///                          value: "relatively".to_owned(),
+///                          line: Some(1), start: 25, end: 35 },
+/// ]);
+/// ```
 pub fn lint(input: &str) -> Vec<Hint> {
     let mut pattern_groups = pattern_groups::PatternGroups::with_capacity(32_000);
     pattern_groups.push(data::ADVERBS, "adverbs");
